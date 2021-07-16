@@ -7,8 +7,6 @@
 在日常的工作中，我们常会有这样的 Go 代码，go 关键字一把搜起一个 goroutine：
 
 ```go
-package main
-
 func main() {
 	ch := make(chan string, 6)
 	go func() {
@@ -29,7 +27,6 @@ func main() {
 代码如下：
 
 ```go
-package main
 func main() {
 	ch := make(chan string, 6)
 	go func() {
@@ -61,7 +58,6 @@ msg, ok := <-ch
 另外我们也可以利用 for range 的特性：
 
 ```go
-package main
 go func() {
 	for {
 		for v := range ch {
@@ -80,30 +76,30 @@ go func() {
 
 ```go
 func main() {
- ch := make(chan string, 6)
- done := make(chan struct{})
- go func() {
-  for {
-   select {
-   case ch <- "脑子进煎鱼了":
-   case <-done:
-    close(ch)
-    return
-   }
-   time.Sleep(100 * time.Millisecond)
-  }
- }()
+	ch := make(chan string, 6)
+	done := make(chan struct{})
+	go func() {
+		for {
+			select {
+			case ch <- "脑子进煎鱼了":
+			case <-done:
+				close(ch)
+				return
+			}
+			time.Sleep(100 * time.Millisecond)
+		}
+	}()
 
- go func() {
-  time.Sleep(3 * time.Second)
-  done <- struct{}{}
- }()
+	go func() {
+		time.Sleep(3 * time.Second)
+		done <- struct{}{}
+	}()
 
- for i := range ch {
-  fmt.Println("接收到的值: ", i)
- }
+	for i := range ch {
+		fmt.Println("接收到的值: ", i)
+	}
 
- fmt.Println("结束")
+	fmt.Println("结束")
 }
 ```
 
@@ -117,7 +113,6 @@ func main() {
 代码如下：
 
 ```go
-package main
 func main() {
 	ch := make(chan struct{})
 	ctx, cancel := context.WithCancel(context.Background())
