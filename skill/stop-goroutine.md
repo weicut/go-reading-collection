@@ -152,7 +152,7 @@ func main() {
 
 答案是不能，因为在 Go 语言中，goroutine 只能自己主动退出，一般通过 channel 来控制，不能被外界的其他 goroutine 关闭或干掉，也没有 goroutine 句柄的显式概念。
 
-![](../images/stop-goroutine-1.png)
+![](../images/stop-goroutine/1.png)
 
 在 Go issues 中也有人提过类似问题，Dave Cheney 给出了一些思考：
 
