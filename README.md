@@ -2,6 +2,7 @@
 
 ## 原理相关
 - [GMP 原理与调度全分析](principle/GMP-model.md)
+- [map 的实现原理](principle/map-realization.md)
 
 ## 工程化相关
 
