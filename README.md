@@ -5,6 +5,7 @@
 - [Map 的实现原理](principle/map-realization.md)
 - [Chan 的实现原理](principle/chan-realization.md)
 - [Defer 的实现原理](principle/defer-realization.md)
+- [Slice 的实现原理](principle/slice-realization.md)
 
 ## 工程化相关
 
