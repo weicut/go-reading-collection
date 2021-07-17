@@ -13,6 +13,7 @@
 ## 技巧相关
 
 - [停止 Goroutine 的几种方法](skill/stop-goroutine.md)
+- [如何让消息队列达到最大吞吐量？](skill/queue-max-cap.md)
 
 ## 微服务相关
 
