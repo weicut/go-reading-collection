@@ -6,6 +6,7 @@
 - [Chan 的实现原理](principle/chan-realization.md)
 - [Defer 的实现原理](principle/defer-realization.md)
 - [Slice 的实现原理](principle/slice-realization.md)
+- [String 的实现原理](principle/string-realization.md)
 
 ## 工程化相关
 
