@@ -4,6 +4,7 @@
 - [GMP 原理与调度全分析](principle/GMP-model.md)
 - [Map 的实现原理](principle/map-realization.md)
 - [Chan 的实现原理](principle/chan-realization.md)
+- [Defer 的实现原理](principle/defer-realization.md)
 
 ## 工程化相关
 
