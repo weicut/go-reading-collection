@@ -11,7 +11,7 @@
 - `C/C++` 的 map 底层是 红黑树实现的
 - GO 的 map 底层是hash 表实现的
 
-可是别忘了`C/C++`中还有一个数据类型是 `unordered_map`，无序map，他的底层实现是 `hash 表`，与我们GO 里面的 map 实现方式类似![](https://cdn.learnku.com/uploads/images/202106/19/77882/bZ5HGrMdtQ.png!large)
+可是别忘了`C/C++`中还有一个数据类型是 `unordered_map`，无序map，他的底层实现是 `hash 表`，与我们GO 里面的 map 实现方式类似![](../images/map-realization/1.png)
 
 ## map 的数据结构是啥样的？
 
@@ -21,7 +21,7 @@
 
 map 具体 的实现 源码位置是：`src/runtime/map.go`
 
-![](https://cdn.learnku.com/uploads/images/202106/19/77882/ouWc6jAHGy.png!large)
+![](../images/map-realization/2.png)
 
 ```go
 // A header for a Go map.
@@ -79,7 +79,7 @@ type mapextra struct {
 
 点进来，这里主要是要和大家一起看看这个 `bmap`的数据结构，
 
-这个结构是，GO map 里面桶的实现结构，![](https://cdn.learnku.com/uploads/images/202106/19/77882/4J2YgsSXGx.png!large)
+这个结构是，GO map 里面桶的实现结构，![](../images/map-realization/3.png)
 
 ```go
 // A bucket for a Go map.
@@ -116,7 +116,7 @@ GO 中 map 底层数据结构成员相对比 string 和 slice 多一些，不过
 
 咱们的 `hmap`的结构是这样的，可以关注桶数组（`hmap.buckets`）
 
-![](https://cdn.learnku.com/uploads/images/202106/19/77882/e28F9uyZDa.png!large)
+![](../images/map-realization/4.png)
 
 若图中的 `B = 3`的话的，那么桶数组长度 就是 **8**
 
@@ -126,7 +126,7 @@ GO 中 map 底层数据结构成员相对比 string 和 slice 多一些，不过
 
 理解起来是这个样子的
 
-![](https://cdn.learnku.com/uploads/images/202106/19/77882/nKKL9SsagU.png!large)
+![](../images/map-realization/5.png)
 
 严格来说，每一个桶里面只会有8 个键值对，若多余 8 的话，就会溢出，溢出的指针就会指向另外一个桶对应的 8个键值对
 
@@ -138,7 +138,7 @@ GO 中 map 底层数据结构成员相对比 string 和 slice 多一些，不过
 
 - data里面存放的是 `key-value` 数据
 
-存放顺序是**8个key依次排开，8个value依次排开**，**这是为啥呢？**![](https://cdn.learnku.com/uploads/images/202106/19/77882/5jTOWqdr1V.png!large)
+存放顺序是**8个key依次排开，8个value依次排开**，**这是为啥呢？**![](../images/map-realization/6.png)
 
 因为GO 里面为了字节对齐，节省空间
 
@@ -180,13 +180,13 @@ GO 中 map 底层数据结构成员相对比 string 和 slice 多一些，不过
 
 > 将哈希表分为基本表和溢出表两部分，凡是和基本表发生冲突的元素，一律填入溢出表。
 
-细心的小伙伴看到这里，有没有看出来 **GO 中的map 是如何解决 hash 冲突的？**![](https://cdn.learnku.com/uploads/images/202106/19/77882/lF45Tl8dJx.gif!large)
+细心的小伙伴看到这里，有没有看出来 **GO 中的map 是如何解决 hash 冲突的？**![](../images/map-realization/7.gif)
 
 **没错，GO 中的map 解决hash 冲突 就是使用的是 链地址法来解决键冲突**
 
 再来一个图，咱们看看他是咋链 的，**其实咱们上述说的溢出指针就已经揭晓答案了**
 
-![](https://cdn.learnku.com/uploads/images/202106/19/77882/pMLcLut8B0.png!large)
+![](../images/map-realization/8.png)
 
 如上图，每一个`bucket` 里面的溢出指针 会指向另外一个 `bucket` ，每一个`bucket` 里面存放的是 8 个 key 和 8 个 value ，bucket 里面的溢出指针又指向另外一个bucket，**用类似链表的方式将他们连接起来**
 
@@ -206,7 +206,7 @@ map 的应用比较简单，感兴趣的可以在搜索引擎上查找相关资�
 
 咱们 `map` 扩容也是有条件的，不是随随便便就能扩容的。
 
-![](https://cdn.learnku.com/uploads/images/202106/19/77882/XuhvCCDvnY.jpeg!large)
+![](../images/map-realization/9.jpeg)
 
 当一个新的元素要添加进`map`的时候，都会检查是否需要扩容，扩容的触发条件就有 2 个：
 
@@ -247,7 +247,7 @@ map 的应用比较简单，感兴趣的可以在搜索引擎上查找相关资�
 
 咱画一个hmap，里面有 1 个`bucket0`，这个桶的满载是 4个 `key-value`，此时的负载因子是 4
 
-![](https://cdn.learnku.com/uploads/images/202106/19/77882/3VaCx24p7a.png!large)
+![](../images/map-realization/10.png)
 
 实际上是不会触发扩容的，因为GO 的默认负载因子是 **6.5**
 
@@ -255,11 +255,11 @@ map 的应用比较简单，感兴趣的可以在搜索引擎上查找相关资�
 
 当再插入一个键值对的时候，就会触发扩容操作，扩容之后再把新插入的键值对，放到新的`bucket`中，即`bucket1`，而旧的bucket指针就会指向原来的那个bucket
 
-![](https://cdn.learnku.com/uploads/images/202106/19/77882/CcNopmCmBm.png!large)
+![](../images/map-realization/11.png)
 
 最后，再做一个迁移，将旧的bucket，迁移到新的bucket上面来，删掉旧的bucket
 
-![](https://cdn.learnku.com/uploads/images/202106/19/77882/qYMK8H9stB.png!large)
+![](../images/map-realization/12.png)
 
 根据上述的数据搬迁图，我们可以知道
 
@@ -267,7 +267,7 @@ map 的应用比较简单，感兴趣的可以在搜索引擎上查找相关资�
 
 新插入的键值对，会存在与另外一个`bucket`中，自然而然的会放到原来 bucket 的后面了
 
-![](https://cdn.learnku.com/uploads/images/202106/19/77882/vsgKKNS9c6.jpeg!large)
+![](../images/map-realization/13.jpeg)
 
 ## 啥是等量扩容
 
