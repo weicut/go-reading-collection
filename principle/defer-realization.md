@@ -12,7 +12,7 @@
 
 - 栈
 
-![](https://cdn.learnku.com/uploads/images/202106/20/77882/iolsFjUcwy.png!large)
+![](../images/defer-realization/1.png)
 
 遵循后进先出原则
 
@@ -22,7 +22,7 @@
 
 - 队列
 
-![](https://cdn.learnku.com/uploads/images/202106/20/77882/EuS9iEtLuj.png!large)
+![](../images/defer-realization/2.png)
 
 遵循先进先出 ， 我们就可以想象一个单向的管道，从左边进，右边出
 
@@ -32,11 +32,11 @@
 
 ## defer 实现原理
 
-![](https://cdn.learnku.com/uploads/images/202106/20/77882/s6458tOL3N.png!large)
+![](../images/defer-realization/3.png)
 
 咱们先抛出一个结论，先心里有点底：
 
-- 代码中声明 `defer`的位置，编译的时候会插入一个函数叫做 `deferproc` ，在该`defer`所在的函数前插入一个返回的函数，不是`return` 哦，是`deferreturn`![](https://cdn.learnku.com/uploads/images/202106/20/77882/Wbk5BiAu7p.png!large)
+- 代码中声明 `defer`的位置，编译的时候会插入一个函数叫做 `deferproc` ，在该`defer`所在的函数前插入一个返回的函数，不是`return` 哦，是`deferreturn`![](../images/defer-realization/4.png)
 
 具体的 `defer` 的实现原理是咋样的，我们还是一样的，来看看 `defer`的底层数据结构是啥样的 ，
 
@@ -94,7 +94,7 @@ type _defer struct {
 
 defer 关键字后面必须是跟函数，这一点咱们要记住哦
 
-![](https://cdn.learnku.com/uploads/images/202106/20/77882/0MD48yXLni.png!large)
+![](../images/defer-realization/5.png)
 
 通过上述参数的描述，我们可以知道，`defer`的数据结构和函数类似，也是有如下三个参数：
 
@@ -114,11 +114,11 @@ defer 关键字后面必须是跟函数，这一点咱们要记住哦
 
 在协程A中声明**2**个`defer`，先声明 `defer test1()`
 
-![](https://cdn.learnku.com/uploads/images/202106/20/77882/W0gzfUd4yE.png!large)
+![](../images/defer-realization/6.png)
 
 再声明 `defer test2()`
 
-![](https://cdn.learnku.com/uploads/images/202106/20/77882/7IAkFX4LyA.png!large)
+![](../images/defer-realization/7.png)
 
 可以看出后声明的`defer`会插入到单链表的头，先声明的`defer`被排到后面去了
 
@@ -210,7 +210,7 @@ func getcallersp() uintptr // implemented as an intrinsic on all platforms
 - 初始化_defer 的相关成员参数
 - **return0**
 
-![](https://cdn.learnku.com/uploads/images/202106/20/77882/yo6p2pxWzC.png!large)
+![](../images/defer-realization/8.png)
 
 **来我们看看 `newdefer`的源码**
 
@@ -297,7 +297,7 @@ for len(pp.deferpool[sc]) < cap(pp.deferpool[sc])/2 && sched.deferpool[sc] != ni
 				}
 ```
 
-![](https://cdn.learnku.com/uploads/images/202106/20/77882/W0NdHO21bi.png!large)
+![](../images/defer-realization/9.png)
 
 点进去看池子的数据结构，其实里面的成员也就是 咱们之前说到的 `_defer`指针
 
@@ -321,7 +321,7 @@ d.heap = true
 
 `mallocgc` 具体实现在 `src/runtime/malloc.go` 中，若感兴趣的话，可以深入看看这一块，今天咱们不重点说这个函数
 
-![](https://cdn.learnku.com/uploads/images/202106/20/77882/HW852kD3xz.gif!large)
+![](../images/defer-realization/10.gif)
 
 ```go
 // Allocate an object of size bytes.
@@ -355,7 +355,7 @@ func return0()
 
 `deferreturn`的作用就是情况`defer`里面的链表，归还相应的缓冲区，或者把对应的空间让`GC`回收调
 
-![](https://cdn.learnku.com/uploads/images/202106/20/77882/IlJTc8oG9p.jpeg!large)
+![](../images/defer-realization/11.jpeg)
 
 ## GO 中 defer 的规则
 
@@ -384,7 +384,7 @@ func main() {
 
 别猜了，运行结果是 **1**，小伙伴们可以将代码拷贝下来，自己运行一波
 
-![](https://cdn.learnku.com/uploads/images/202106/20/77882/H5YX9LMFKE.jpeg!large)
+![](../images/defer-realization/12.jpeg)
 
 ### 第三点也来一个DEMO
 
@@ -416,7 +416,7 @@ res++
 
 因此，结果就是 **2**
 
-![](https://cdn.learnku.com/uploads/images/202106/20/77882/h2PVyB59bG.png!large)
+![](../images/defer-realization/13.png)
 
 ## 总结
 
