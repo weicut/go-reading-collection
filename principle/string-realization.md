@@ -6,7 +6,7 @@
 
 在众多编程语言里面，相信都少不了字符串类型
 
-![](https://cdn.learnku.com/uploads/images/202106/19/77882/mh2GZauFrS.jpeg!large)
+![](../images/string-realization/1.jpeg)
 
 字符串，顾名思义就是一串字符，我们要明白，字符也是分为中文字符和英文字符的
 
@@ -45,7 +45,7 @@ type string string
 
 另外，找到 `string` 在 GO 里面对应的源码文件中`src/runtime/string.go` ， 有这么一个结构体，只提供给包内使用，我们可以看到`string`的数据结构 `stringStruct` 是这个样子的
 
-![](https://cdn.learnku.com/uploads/images/202106/19/77882/1e3mdyfe1V.png!large)
+![](../images/string-realization/2.png)
 
 ```go
 type stringStruct struct {
@@ -128,7 +128,7 @@ func findnull(s *byte) int {
 - 先将字符数据构建程 **stringStruct**
 - 再通过 **gostringnocopy** 函数 转换成 string
 
-![](https://cdn.learnku.com/uploads/images/202106/19/77882/Tu6LNM51K4.png!large)
+![](../images/string-realization/3.png)
 
 
 
@@ -144,11 +144,11 @@ func findnull(s *byte) int {
 
 GO 里面的 string 类型，是不是也和 字面量一样的呢？我们来看看吧
 
-![](https://cdn.learnku.com/uploads/images/202106/19/77882/LoLhRojBRO.jpeg!large)
+![](../images/string-realization/4.jpeg)
 
 字符串类型，本身也是拥有对应的内存空间的，那么修改`string`类型的值应该是要支持的。
 
-可是，`XDM` 在 Go 的实现中，`string` 类型是不包含内存空间![](https://cdn.learnku.com/uploads/images/202106/19/77882/SLRl4TJzFt.png!large)，只有一个内存的指针，这里就有点想C/C++里面的案例：
+可是，`XDM` 在 Go 的实现中，`string` 类型是不包含内存空间![](../images/string-realization/5.png)，只有一个内存的指针，这里就有点想C/C++里面的案例：
 
 ```c++
 char * str = "XMTONG"
@@ -158,7 +158,7 @@ char * str = "XMTONG"
 
 在GO 里面的字符串，就与上述类似
 
-这样做的好处是 `string` 变得非常轻量，可以很方便的进行传递而不用担心内存拷贝（这也避免了内存带来的诸多问题![](https://cdn.learnku.com/uploads/images/202106/19/77882/2gENvjpWLg.png!large))
+这样做的好处是 `string` 变得非常轻量，可以很方便的进行传递而不用担心内存拷贝（这也避免了内存带来的诸多问题![](../images/string-realization/6.png))
 
 GO 中的 `string`类型一般是指向字符串字面量
 
@@ -166,7 +166,7 @@ GO 中的 `string`类型一般是指向字符串字面量
 
 **因此，GO 的 `string` 类型不可修改的**
 
-![](https://cdn.learnku.com/uploads/images/202106/19/77882/MbUKkmycXa.jpeg!large)
+![](../images/string-realization/7.jpeg)
 
 可是我们想一想，要是在GO 里面字符串全都是只读的，那么我们如何动态修改一些我们需要改变的字符呢，这岂不是缺陷了
 
@@ -178,7 +178,7 @@ GO 里面还有byte数组，**[]byte**
 
 上述 `char * str = "XMTONG"`
 
-![](https://cdn.learnku.com/uploads/images/202106/19/77882/2UDPRm4HCE.png!large)
+![](../images/string-realization/8.png)
 
 - 字符串长度，就是字符的个数，为 6
 - 计算`str`所占字节数（C/C++中是通过 `sizeof()` 来计算的）的话，那就是 7 ，因为尾巴后面还有一个'\0'
@@ -205,7 +205,7 @@ GO 里面还有byte数组，**[]byte**
 
 我们来看看什么场景用 **string 类型**， 啥场景 使用 **[]byte 类型**
 
-![](https://cdn.learnku.com/uploads/images/202106/19/77882/8umdtvOInU.gif!large)
+![](../images/string-realization/9.gif)
 
 使用到 **string 类型**的 地方：
 
@@ -259,7 +259,7 @@ func main(){
 58 4d 54 4f 4e 47
 ```
 
-![](https://cdn.learnku.com/uploads/images/202106/19/77882/y0WDx1B2Bn.png!large)
+![](../images/string-realization/10.png)
 
 上述代码转成 `[]byte` 之后是一个字节，一个字节的
 
@@ -293,9 +293,9 @@ GO 的标准开发文档，在搜索引擎里面还是比较容易搜索到的
 
 ![img](https://cdn.learnku.com/uploads/images/202106/19/77882/HUmSX0844T.gif!large)
 
-![](https://cdn.learnku.com/uploads/images/202106/19/77882/dGkkjaVye9.png!large)
+![](../images/string-realization/11.png)
 
-![](https://cdn.learnku.com/uploads/images/202106/19/77882/WdgVqWPPBw.png!large)
+![](../images/string-realization/12.png)
 
 ## 总结
 
