@@ -4,11 +4,11 @@
 
 有没有觉得很熟悉，上次分享的 `string` 类型 对应的数据结构 的前两个参数 与 切片的数据结构的前两个参数是一样的
 
-![](https://cdn.learnku.com/uploads/images/202106/19/77882/o326nRQdYA.jpeg!large)
+![](../images/slice-realization/1.jpeg)
 
 看看GO 的  `src/runtime/` 下的 `slice.go` 源码，我们可以找到 slice的数据结构
 
-![](https://cdn.learnku.com/uploads/images/202106/19/77882/QwT6WO1FsJ.png!large)
+![](../images/slice-realization/2.png)
 
 ```go
 type slice struct {
@@ -33,7 +33,7 @@ type Pointer *ArbitraryType
 
 **切片的底层结构是一个结构体**，对应有**三个**参数
 
-![](https://cdn.learnku.com/uploads/images/202106/19/77882/vWOytm9tDJ.png!large)
+![](../images/slice-realization/3.png)
 
 - array
 
@@ -51,7 +51,7 @@ type Pointer *ArbitraryType
 
 ## slice 和 数组的区别是啥？
 
-![](https://cdn.learnku.com/uploads/images/202106/19/77882/SfapIsuwcB.png!large)
+![](../images/slice-realization/4.png)
 
 **大概有如下几个区别**
 
@@ -84,7 +84,7 @@ type Pointer *ArbitraryType
 
 新建一个 len 为 4，cap 为7 的切片：
 
-![](https://cdn.learnku.com/uploads/images/202106/19/77882/hPpzoxDys3.png!large)
+![](../images/slice-realization/5.png)
 
 ```go
 func main(){
@@ -114,7 +114,7 @@ func main(){
 - 创建一个 长度 为 8，数据类型为 `int` 的数组
 - 数组的第5个元素和第6个元素复制给到新的切片
 
-![](https://cdn.learnku.com/uploads/images/202106/19/77882/nKIvQVmZFQ.png!large)
+![](../images/slice-realization/6.png)
 
 ```go
 func main(){
@@ -143,7 +143,7 @@ cap ==  4
 
 根据代码执行情况，打印出 `00`，大家应该不会觉得奇怪
 
-![](https://cdn.learnku.com/uploads/images/202106/19/77882/6KruLO6FIO.jpeg!large)
+![](../images/slice-realization/7.jpeg)
 
 **可是为什么 cap 等于 4？**
 
@@ -159,7 +159,7 @@ cap ==  4
 
 不过这里还是要注意，切片元素对应的地址，还是这个数组元素对应的地址，使用的时候需要小心
 
-![](https://cdn.learnku.com/uploads/images/202106/19/77882/ugr1WFcGTg.png!large)
+![](../images/slice-realization/8.png)
 
 ## slice 扩容原理是什么？
 
@@ -169,7 +169,7 @@ cap ==  4
 - 向切片中添加一个元素
 - 打印最终切片的详细情况
 
-![](https://cdn.learnku.com/uploads/images/202106/19/77882/sTBrPWNpQh.png!large)
+![](../images/slice-realization/9.png)
 
 ```go
 func main(){
@@ -222,7 +222,7 @@ new_cap ==  8
 
 向一个容量为 4 且长度为 4 的切片添加元素，我们发现切片的容量变成了 8
 
-![](https://cdn.learnku.com/uploads/images/202106/19/77882/60GIKeNDrg.png!large)
+![](../images/slice-realization/10.png)
 
 我们来看看切片扩容的规则是这样的：
 
@@ -300,7 +300,7 @@ null
 - mys1 是一个空对象
 - mys2 不是一个空对象，是一个正常的对象，但是对象里面的为空
 
-![](https://cdn.learnku.com/uploads/images/202106/19/77882/LWwVg9rXE1.png!large)
+![](../images/slice-realization/11.png)
 
 ## 总结
 
