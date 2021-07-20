@@ -128,7 +128,7 @@ defer 关键字后面必须是跟函数，这一点咱们要记住哦
 
 
 
-![image-20210618144713620](https://cdn.learnku.com/uploads/images/202106/20/77882/iELNPHQGK2.png!large)
+![image-20210618144713620](../images/defer-realization/f7f5cff7569021a44a02098f408a7e65.png)
 
 源码文件在 `src/runtime/panic.go` 中，查看 函数 `deferproc`
 
