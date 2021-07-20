@@ -71,7 +71,7 @@ type RollingWindow struct {
 
 在一个 `rollingwindow` 包含若干个桶（这个看开发者自己定义）：
 
-![](https://cdn.learnku.com/uploads/images/202105/31/73865/IF6PwGyQ8T.webp!large)
+![](../images/adaptive/bc17346e2fca4233bfc9c3a315f5b9cb.webp)
 
 每一个桶存储了：`Sum` 成功总数，`Count` 请求总数。所以在最后 `breaker` 做计算的时候，会将 Sum 累计加和为 `accepts`，Count 累计加和为 `total`，从而可以统计出当前的错误率。
 
@@ -122,7 +122,7 @@ func (w *window) add(offset int, v float64) {
 }
 ```
 
-![](https://cdn.learnku.com/uploads/images/202105/31/73865/W5x2UxL3QT.webp!large)
+![](../images/adaptive/844e35bc2bbe0e5b7dac00dd550336aa.webp)
 
 上图就是在 `Add(delta)` 过程中发生的 `bucket` 发生的窗口变化。解释一下：
 
@@ -135,7 +135,7 @@ func (w *window) add(offset int, v float64) {
 
 而在这个过程中，如何确定确定 `bucket` 过期点，以及更新时间。滑动窗口最重要的就是时间更新，下面用图来解释这个过程：
 
-![](https://cdn.learnku.com/uploads/images/202105/31/73865/awAKVWFKN4.webp!large)
+![](../images/adaptive/3dfa655852bc1dae74833752d459e462.webp)
 
 而  `bucket` 过期点，说白就是 `lastTime` 即上一个更新时间跨越了几个 `bucket`：`timex.Since(rw.lastTime) / rw.interval`
 
