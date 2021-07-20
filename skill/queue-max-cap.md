@@ -36,7 +36,7 @@
 
 ## 解决方案和实现
 
-![](https://cdn.learnku.com/uploads/images/202105/12/73865/u3VJUx2bQy.png!large)
+![](../images/queue-max-cap/a399bf06f5a4ca49a84a55e0c099164e.png)
 
 借用一下 `Rob Pike` 的一张图，这个跟队列消费异曲同工。左边4个 `gopher` 从队列里取，右边4个 `gopher` 接过去处理。比较理想的结果是左边和右边速率基本一致，没有谁浪费，没有谁等待，中间交换处也没有堆积。
 
@@ -194,7 +194,7 @@ func main() {
 
 ## 整体设计
 
-![如何让消息队列达到最大吞吐量？](https://cdn.learnku.com/uploads/images/202105/12/73865/JfGpLa9UFP.png!large)
+![如何让消息队列达到最大吞吐量？](../images/queue-max-cap/32755a3660a4ff5407abc9f23dc3b921.png)
 
 整体流程如上图：
 
