@@ -10,14 +10,15 @@
 
 ## 工程化相关
 
-- [Go工程化 - Project Layout 最佳实践](engineering/kratos-layout.md)
-- [Go工程化 - 依赖注入](engineering/di.md)
+- [Go 工程化 - Project Layout 最佳实践](engineering/kratos-layout.md)
+- [Go 工程化 - 依赖注入](engineering/di.md)
 
 ## 技巧相关
 
 - [停止 Goroutine 的几种方法](skill/stop-goroutine.md)
 - [如何让消息队列达到最大吞吐量？](skill/queue-max-cap.md)
-- [GO的锁和原子操作](skill/lock-cas.md)
+- [GO 的锁和原子操作](skill/lock-cas.md)
+- [进程内缓存助你提高并发能力](skill/local-cache.md)
 
 ## 微服务相关
 
