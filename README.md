@@ -28,5 +28,7 @@
 
 ## 代码设计相关
 
+- [如何写出优雅的 Go 语言代码](code-design/pretty-code.md)
+
 ## 代码测试相关
 
