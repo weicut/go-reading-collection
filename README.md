@@ -10,6 +10,8 @@
 
 ## 工程化相关
 
+- [Go工程化 - Project Layout 最佳实践](engineering/kratos-layout.md)
+
 ## 技巧相关
 
 - [停止 Goroutine 的几种方法](skill/stop-goroutine.md)
