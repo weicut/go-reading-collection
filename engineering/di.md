@@ -451,3 +451,10 @@ func initApp() *App {  // injector
    wire 还有更多功能，比如 cleanup, bind 等等，请参考官方文档来使用。
 
 最后，其实多折腾几次，就会使用了，希望本文能对您起到一定程度上的帮助。
+
+---
+
+> 作者：Windfarer
+> 链接：https://go-kratos.dev/blog/go-project-wire
+> 来源：go-kratos
+> 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
