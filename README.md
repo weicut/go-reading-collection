@@ -11,6 +11,7 @@
 ## 工程化相关
 
 - [Go工程化 - Project Layout 最佳实践](engineering/kratos-layout.md)
+- [Go工程化 - 依赖注入](engineering/di.md)
 
 ## 技巧相关
 
