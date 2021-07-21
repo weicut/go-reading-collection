@@ -18,6 +18,7 @@
 ## 微服务相关
 
 - [自适应微服务治理背后的算法](micro/adaptive.md)
+- [缓存原理与微服务缓存自动管理](micro/cache-manager.md)
 
 ## 代码设计相关
 
