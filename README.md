@@ -2,7 +2,7 @@
 
 ## 开源项目
 
-- [Go 的热门开源项目](library/helper-library.md)
+- [Go 的热门开源项目](library/hot-library.md)
 
 ## 原理相关
 - [GMP 原理与调度全分析](principle/GMP-model.md)
