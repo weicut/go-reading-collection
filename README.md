@@ -1,5 +1,9 @@
 # 日常 Golang 优质文章的阅读与收藏，仅供学习用途，内容均有作者出处的注明
 
+## 开源项目
+
+- [Go 的热门开源项目](library/helper-library.md)
+
 ## 原理相关
 - [GMP 原理与调度全分析](principle/GMP-model.md)
 - [Map 的实现原理](principle/map-realization.md)
